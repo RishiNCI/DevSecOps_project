@@ -1,0 +1,42 @@
+<!-- profile.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <!-- Profile Card -->
+        <div class="card mt-5">
+            <div class="card-header bg-dark text-white text-center">
+                <h3>Welcome, {{ user_profile.user.username }}</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Your Profile Information</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Weight:</strong> {{ user_profile.weight }} kg
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Height:</strong> {{ user_profile.height }} m
+                    </li>
+                    <li class="list-group-item">
+                        <strong>BMI:</strong> 
+                        {% if bmi %}
+                            {{ bmi }}
+                        {% else %}
+                            Please update your weight and height
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diet Suggestion Section -->
+        <div class="mt-4">
+            <h4 class="text-primary">Diet Suggestion</h4>
+            <div class="alert alert-info">
+                <i class="fas fa-utensils"></i> {{ diet_suggestion }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

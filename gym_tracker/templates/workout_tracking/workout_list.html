@@ -1,0 +1,47 @@
+<!-- templates/workout_tracking/workout_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Workouts</h2>
+
+    <!-- Add Workout Button -->
+    <a class="btn btn-primary mb-3" href="{% url 'workout_create' %}">Add Workout</a>
+
+    <!-- Workout Table -->
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for workout in workouts %}
+                    <tr>
+                        <td>{{ workout.date }}</td>
+                        <td>{{ workout.notes|truncatechars:50 }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{% url 'workout_detail' workout.pk %}">View</a>
+                            <a class="btn btn-warning btn-sm" href="{% url 'workout_edit' workout.pk %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'workout_delete' workout.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            <div class="alert alert-info">
+                                No workouts logged yet. Start by adding a workout!
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

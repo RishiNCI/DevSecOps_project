@@ -1,0 +1,23 @@
+<!-- workout_calendar.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h2>Workout Calendar</h2>
+<div class="row">
+    {% for date in dates %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ date|date:"D, M d" }}
+                </div>
+                <div class="card-body">
+                    {% for workout in workout_by_day|default_if_none:""|dictsort:date %}
+                        <p class="card-text">{{ workout.workout.name }} - {{ workout.workout.duration_minutes }} min</p>
+                    {% empty %}
+                        <p class="text-muted">No workout scheduled</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+<h1>Meal Log</h1>
+{% for meal in meals %}
+    <p>{{ meal.date }} - {{ meal.meal_type }}: {{ meal.calories }} kcal - {{ meal.description }}</p>
+{% endfor %}
