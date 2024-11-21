@@ -10,6 +10,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ["https://38d0971c490e4482bc09fd022cb15569.vfs.cloud9.eu-west-1.amazonaws.com"]
+
 # Installed apps
 INSTALLED_APPS = [
     # Django apps
