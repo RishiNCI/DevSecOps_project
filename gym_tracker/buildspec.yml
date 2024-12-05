@@ -19,6 +19,7 @@ phases:
     commands:
       - echo "Collecting static files"
       - python manage.py collectstatic --noinput
+
 artifacts:
   files:
     - '**/*'
