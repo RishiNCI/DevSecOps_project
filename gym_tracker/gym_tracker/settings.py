@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'authentication',
     'workout_tracking',
     'diet_tracking',
+    'crispy_bootstrap4'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
