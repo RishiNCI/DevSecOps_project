@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9 # Specify the Python version used in your project
+    commands:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo "Running database migrations"
+      - python manage.py migrate
+  build:
+    commands:
+      - echo "Running tests"
+      - python manage.py test
+  post_build:
+    commands:
+      - echo "Collecting static files"
+      - python manage.py collectstatic --noinput
+      - echo "Zipping project files"
+      - zip -r django-artifacts.zip . # Adjust as needed for deployment
+artifacts:
+  files:
+    - django-artifacts.zip
+    - '**/*' # Include all project files if required
+  discard-paths: no
