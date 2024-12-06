@@ -10,14 +10,17 @@ phases:
   pre_build:
     commands:
       - echo "Running database migrations"
+      - cd gym_tracker
       - python3 manage.py migrate
   build:
     commands:
       - echo "Running tests"
+      - cd gym_tracker
       - python3 manage.py test
   post_build:
     commands:
       - echo "Collecting static files"
+      - cd gym_tracker
       - python3 manage.py collectstatic --noinput
 
 artifacts:
