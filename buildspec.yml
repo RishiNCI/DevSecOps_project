@@ -15,13 +15,12 @@ phases:
   build:
     commands:
       - echo "Running tests"
-      - cd /gym_tracker
+      - pwd
       - python3 manage.py test
   post_build:
     commands:
       - echo "Collecting static files"
-      - cd /gym_tracker
-      - python3 manage.py collectstatic --noinput
+      - python3 gym_tracker/manage.py collectstatic --noinput
 
 artifacts:
   files:
