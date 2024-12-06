@@ -10,13 +10,13 @@ phases:
   pre_build:
     commands:
       - echo "Running database migrations"
-      - pwd
-      - python3 manage.py migrate
+      - ls -lrt
+      - python3 gym_tracker/manage.py migrate
   build:
     commands:
       - echo "Running tests"
       - pwd
-      - python3 manage.py test
+      - python3 gym_tracker/manage.py test
   post_build:
     commands:
       - echo "Collecting static files"
