@@ -10,15 +10,15 @@ phases:
   pre_build:
     commands:
       - echo "Running database migrations"
-      - python manage.py migrate
+      - python3 manage.py migrate
   build:
     commands:
       - echo "Running tests"
-      - python manage.py test
+      - python3 manage.py test
   post_build:
     commands:
       - echo "Collecting static files"
-      - python manage.py collectstatic --noinput
+      - python3 manage.py collectstatic --noinput
 
 artifacts:
   files:
