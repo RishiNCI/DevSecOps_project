@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9  # Adjust to your desired Python version
+    commands:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo "Running database migrations"
+      - python manage.py migrate
+  build:
+    commands:
+      - echo "Running tests"
+      - python manage.py test
+  post_build:
+    commands:
+      - echo "Collecting static files"
+      - python manage.py collectstatic --noinput
+
+artifacts:
+  files:
+    - '**/*'  # Adjust depending on which files need to be included in artifacts
+  discard-paths: no
