@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
       - echo "Running database migrations"
-      - cd /gym_tracker
+      - pwd
       - python3 manage.py migrate
   build:
     commands:
