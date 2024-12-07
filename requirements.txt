@@ -5,5 +5,4 @@ typing-extensions==4.12.2
 django-crispy-forms==2.3
 django-widget-tweaks==1.5.0
 crispy-bootstrap4==2024.10
-awscli>=2.15.0,<3.0
 
