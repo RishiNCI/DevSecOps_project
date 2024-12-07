@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo "Running database migrations"
+      - python3 gym_tracker/manage.py migrate
+  build:
+    commands:
+      - echo "Running tests"
+      - python3 gym_tracker/manage.py test
+  post_build:
+    commands:
+      - echo "Creating staticfiles directory"
+      - mkdir -p gym_tracker/staticfiles  # Ensure the directory exists
+      - echo "Collecting static files"
+      - python3 gym_tracker/manage.py collectstatic --noinput
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no

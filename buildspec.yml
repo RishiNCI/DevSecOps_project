@@ -2,19 +2,23 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.9
     commands:
-      - echo "Installing dependencies"
+      - echo Installing dependencies...
+      - pip install --upgrade pip
+      - python -m venv myenv
+      - source myenv/bin/activate	
       - pip install -r requirements.txt
-  pre_build:
-    commands:
-      - echo "Running database migrations"
-      - python3 gym_tracker/manage.py migrate
+      - pip install boto3 
   build:
     commands:
-      - echo "Running tests"
-      - python3 gym_tracker/manage.py test
+      - echo Running Django pre-build steps...
+      - python gym_tracker/manage.py check
+  build:
+    commands:
+      - echo Building the Django application...
+      - python gym_tracker/manage.py collectstatic --noinput
+      - python gym_tracker/manage.py migrate
+      - echo Application build complete.
   post_build:
     commands:
       - echo "Creating staticfiles directory"
@@ -24,5 +28,5 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
-  discard-paths: no
+    - application.zip
+
