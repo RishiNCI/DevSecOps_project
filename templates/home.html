@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Main Jumbotron for Hero Section -->
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to Gym Tracker!</h1>
+    <p class="lead">Track your workouts and diet to achieve your fitness goals.</p>
+    <hr class="my-4">
+
+    {% if user.is_authenticated %}
+    <!-- Authenticated user message and links -->
+    <p>Get started by logging your workouts and meals.</p>
+    <a class="btn btn-primary btn-lg m-2" href="{% url 'workout_list' %}" role="button">View Workouts</a>
+    <a class="btn btn-success btn-lg m-2" href="{% url 'diet_list' %}" role="button">View Diet</a>
+    <a class="btn btn-info btn-lg m-2" href="{% url 'profile' %}" role="button">View Profile & BMI</a>
+    {% else %}
+    <!-- Guest user message and links -->
+    <p>Please log in or register to start tracking your fitness journey.</p>
+    <a class="btn btn-primary btn-lg m-2" href="{% url 'login' %}" role="button">Login</a>
+    <a class="btn btn-success btn-lg m-2" href="{% url 'register' %}" role="button">Register</a>
+    {% endif %}
+</div>
+{% endblock %}

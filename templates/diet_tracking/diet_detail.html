@@ -1,0 +1,37 @@
+<!-- templates/diet_tracking/diet_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <!-- Meal Detail Card -->
+        <div class="card mt-5">
+            <div class="card-header bg-info text-white text-center">
+                <h3>{{ meal.name }} on {{ meal.date }}</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Calories:</strong> {{ meal.calories }} kcal
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Protein:</strong> {{ meal.protein }}g
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Carbs:</strong> {{ meal.carbs }}g
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Fats:</strong> {{ meal.fats }}g
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Water Intake:</strong> {{ meal.water_intake }}L
+                    </li>
+                </ul>
+                <div class="mt-4 text-center">
+                    <a class="btn btn-secondary" href="{% url 'diet_list' %}">Back to Meals</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

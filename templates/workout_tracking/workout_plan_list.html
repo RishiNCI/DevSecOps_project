@@ -1,0 +1,34 @@
+<!-- templates/workout_plan_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Workout Plans</h2>
+
+    <!-- Row of Plan Cards -->
+    <div class="row">
+        {% for plan in plans %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <!-- Plan Title -->
+                    <h5 class="card-title">{{ plan.name }}</h5>
+
+                    <!-- Plan Description -->
+                    <p class="card-text text-muted">{{ plan.description|truncatewords:20 }}</p>
+
+                    <!-- View Plan Button -->
+                    <a href="{% url 'workout_plan_detail' plan.pk %}" class="btn btn-primary btn-block">View Plan</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                No workout plans available. Create a new plan to get started!
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

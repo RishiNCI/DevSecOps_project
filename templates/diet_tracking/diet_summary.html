@@ -1,0 +1,14 @@
+<!-- templates/diet_tracking/diet_summary.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Diet Summary (Last 7 Days)</h2>
+<ul>
+    <li><strong>Total Calories:</strong> {{ summary.total_calories }}</li>
+    <li><strong>Total Protein:</strong> {{ summary.total_protein }}g</li>
+    <li><strong>Total Carbs:</strong> {{ summary.total_carbs }}g</li>
+    <li><strong>Total Fats:</strong> {{ summary.total_fats }}g</li>
+    <li><strong>Total Water Intake:</strong> {{ summary.total_water }}L</li>
+</ul>
+<!-- Optionally, add charts here using Chart.js -->
+{% endblock %}

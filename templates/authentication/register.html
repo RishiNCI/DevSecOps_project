@@ -1,0 +1,28 @@
+<!-- templates/authentication/register.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-5">
+            <div class="card-header bg-success text-white text-center">
+                <h2>Register</h2>
+                <p class="mb-0">Create your account to start tracking your workouts and diet</p>
+            </div>
+            <div class="card-body">
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <!-- Display form fields -->
+                    {{ form.as_p }}
+                    <!-- Submit Button -->
+                    <button class="btn btn-success btn-block" type="submit">Register</button>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <small>Already have an account? <a href="{% url 'login' %}">Login here</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

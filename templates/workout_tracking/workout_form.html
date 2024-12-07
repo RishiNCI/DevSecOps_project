@@ -1,0 +1,46 @@
+<!-- templates/workout_tracking/workout_form.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <!-- Workout Form Card -->
+        <div class="card mt-5">
+            <div class="card-header bg-success text-white text-center">
+                <h3>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Workout</h3>
+            </div>
+            <div class="card-body">
+                <!-- Main Workout Form -->
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <!-- Formset (Multiple Exercises) -->
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                {{ form|crispy }}
+
+                                <!-- Delete Button (if applicable) -->
+                                {% if form.instance.pk %}
+                                    <div class="form-group">
+                                        <label for="id_{{ form.prefix }}-DELETE">Delete Exercise</label>
+                                        {{ form.DELETE }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Submit Button -->
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

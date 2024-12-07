@@ -1,0 +1,34 @@
+<!-- templates/workout_plan_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Plan Header Card -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>{{ plan.name }}</h3>
+        </div>
+        <div class="card-body">
+            <p>{{ plan.description }}</p>
+        </div>
+    </div>
+
+    <!-- Workout List -->
+    <h4 class="mt-4">Workouts in this Plan</h4>
+    <ul class="list-group">
+        {% for workout in workouts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5>{{ workout.name }}</h5>
+                <p>{{ workout.get_day_of_week_display }} - Duration: {{ workout.duration_minutes }} minutes</p>
+            </div>
+            <span class="badge badge-primary badge-pill">{{ workout.day_of_week }}</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item">
+            No workouts available for this plan.
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
