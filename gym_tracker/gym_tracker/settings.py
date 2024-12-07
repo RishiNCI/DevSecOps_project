@@ -21,14 +21,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Third-party apps
     'crispy_forms',
     'widget_tweaks',
-    
-    # Your apps
-    'authentication',
     'workout_tracking',
+    'authentication',
     'diet_tracking',
     'crispy_bootstrap4'
 ]
