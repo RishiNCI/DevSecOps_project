@@ -6,10 +6,10 @@ phases:
       - echo Installing dependencies...
       - pip install --upgrade pip
       - python -m venv myenv
-      - source myenv/bin/activate	
+      - source myenv/bin/activate
       - pip install -r requirements.txt
-      - pip install boto3 
-  build:
+      - pip install boto3
+  pre_build:
     commands:
       - echo Running Django pre-build steps...
       - python gym_tracker/manage.py check
@@ -21,12 +21,10 @@ phases:
       - echo Application build complete.
   post_build:
     commands:
-      - echo "Creating staticfiles directory"
-      - mkdir -p gym_tracker/staticfiles  # Ensure the directory exists
-      - echo "Collecting static files"
-      - python3 gym_tracker/manage.py collectstatic --noinput
+      - echo "Packaging the application for deployment..."
+      - zip -r application.zip .
+      - mv application.zip ../
 
 artifacts:
   files:
     - application.zip
-
