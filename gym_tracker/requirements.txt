@@ -65,3 +65,4 @@ systemd-python==235
 typing_extensions==4.12.2
 urllib3==1.25.10
 wcwidth==0.2.5
+gunicorn
