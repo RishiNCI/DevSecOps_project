@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     
     # Your apps
-    'authentication',
+    'gym_tracker.authentication',
     'workout_tracking',
     'diet_tracking',
     'crispy_bootstrap4'
