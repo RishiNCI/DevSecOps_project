@@ -7,11 +7,13 @@ phases:
     commands:
       - echo "Installing dependencies"
       - pip install -r requirements.txt
+      - pip install -r requirements.txt pylint
   pre_build:
     commands:
       - echo "Running database migrations"
       - ls -lrt
       - python3 gym_tracker/manage.py migrate
+      - pylint $CODEBUILD_SRC_DIR/gym_tracker/*.py
   build:
     commands:
       - echo "Running tests"
