@@ -2,29 +2,27 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      python: 3.9  # Adjust to your desired Python version
     commands:
-      - echo Installing dependencies...
-      - pip install --upgrade pip
-      - python -m venv myenv
-      - source myenv/bin/activate
+      - echo "Installing dependencies"
       - pip install -r requirements.txt
-      - pip install boto3
   pre_build:
     commands:
-      - echo Running Django pre-build steps...
-      - python gym_tracker/manage.py check
+      - echo "Running database migrations"
+      - ls -lrt
+      - python3 gym_tracker/manage.py migrate
   build:
     commands:
-      - echo Building the Django application...
-      - python gym_tracker/manage.py collectstatic --noinput
-      - python gym_tracker/manage.py migrate
-      - echo Application build complete.
+      - echo "Running tests"
+      - pwd
+      - python3 gym_tracker/manage.py test
   post_build:
     commands:
-      - echo "Packaging the application for deployment..."
-      - zip -r application.zip .
-      - mv application.zip ../
+      - echo "Collecting static files"
+      - python3 gym_tracker/manage.py collectstatic --noinput
 
 artifacts:
   files:
-    - application.zip
+    - '**/*'  # Adjust depending on which files need to be included in artifacts
+  discard-paths: no
