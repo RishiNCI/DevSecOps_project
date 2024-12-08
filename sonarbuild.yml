@@ -1,10 +1,12 @@
 version: 0.2
 env:
   secrets-manager:
-    SONARCLOUD_TOKEN: Fitness_tracker:sonar_token
     SONARCLOUD_ORG: Fitness_tracker:Organization
-    PROJECTKEY: Fitness_tracker:project
     HOST: Fitness_tracker:Host
+    PROJECTKEY: Fitness_tracker:project
+    SONARCLOUD_TOKEN: Fitness_tracker:sonar_token
+    
+    
 
 phases:
   install:
