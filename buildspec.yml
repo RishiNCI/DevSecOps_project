@@ -13,7 +13,7 @@ phases:
       - ls -lrt 
       - python3 gym_tracker/manage.py migrate
       - echo "Running Pylint"
-      - pylint $CODEBUILD_SRC_DIR/gym_tracker/*.py || echo "Pylint failed, continuing build..."
+      - pylint $CODEBUILD_SRC_DIR/*.py || echo "Pylint failed, continuing build..."
   build:
     commands:
       - echo "Running tests"
