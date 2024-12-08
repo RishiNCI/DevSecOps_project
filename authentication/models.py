@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
+
 from django.conf import settings
 
 
@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     # Add additional fields if needed
     pass
 
-
+from django.contrib.auth.models import User
 class UserProfile(models.Model):
     GOAL_CHOICES = [
         ('weight_loss', 'Weight Loss'),
