@@ -3,18 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.9 
+      python: 3.9  # Adjust to your desired Python version
     commands:
       - echo "Installing dependencies"
       - pip install -r requirements.txt
   pre_build:
     commands:
       - echo "Running database migrations"
-      - ls -lrt 
+      - ls -lrt  # Verify the files in the source directory
       - python3 gym_tracker/manage.py migrate
-      - echo "Running Pylint"
-      - pylint $CODEBUILD_SRC_DIR/*.py || echo "Pylint failed, continuing build..."
-      - echo $CODEBUILD_SRC_DIR/*.py
+      - echo "Running Pylint on gym_tracker directory"
+      - pylint $CODEBUILD_SRC_DIR/gym_tracker/**/*.py || echo "Pylint failed for gym_tracker, continuing build..."
+      - echo "Running Pylint on diet_tracking directory"
+      - pylint $CODEBUILD_SRC_DIR/diet_tracking/**/*.py || echo "Pylint failed for diet_tracking, continuing build..."
+      - echo "Running Pylint on gym_tracking directory"
+      - pylint $CODEBUILD_SRC_DIR/gym_tracking/**/*.py || echo "Pylint failed for diet_tracking, continuing build..."
   build:
     commands:
       - echo "Running tests"
@@ -27,5 +30,5 @@ phases:
 
 artifacts:
   files:
-    - '**/*' 
+    - '**/*'  # Adjust depending on which files need to be included in artifacts
   discard-paths: no
