@@ -11,18 +11,18 @@ phases:
     commands:
       - echo "Running database migrations"
       - ls -lrt  # Verify the files in the source directory
-      - python3 gym_tracker/manage.py migrate
+      - python3 manage.py migrate
       - echo "Running Pylint on gym_tracker directory"
       - pylint $CODEBUILD_SRC_DIR/gym_tracker/ || echo "Pylint failed for gym_tracker, continuing build..."
   build:
     commands:
       - echo "Running tests"
       - pwd
-      - python3 gym_tracker/manage.py test
+      - python3 manage.py test
   post_build:
     commands:
       - echo "Collecting static files"
-      - python3 gym_tracker/manage.py collectstatic --noinput
+      - python3 manage.py collectstatic --noinput
 
 artifacts:
   files:
