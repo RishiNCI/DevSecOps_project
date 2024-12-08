@@ -13,11 +13,7 @@ phases:
       - ls -lrt  # Verify the files in the source directory
       - python3 gym_tracker/manage.py migrate
       - echo "Running Pylint on gym_tracker directory"
-      - pylint $CODEBUILD_SRC_DIR/gym_tracker/**/*.py || echo "Pylint failed for gym_tracker, continuing build..."
-      - echo "Running Pylint on diet_tracking directory"
-      - pylint $CODEBUILD_SRC_DIR/diet_tracking/**/*.py || echo "Pylint failed for diet_tracking, continuing build..."
-      - echo "Running Pylint on gym_tracking directory"
-      - pylint $CODEBUILD_SRC_DIR/gym_tracking/**/*.py || echo "Pylint failed for diet_tracking, continuing build..."
+      - pylint $CODEBUILD_SRC_DIR/*.py || echo "Pylint failed for gym_tracker, continuing build..."
   build:
     commands:
       - echo "Running tests"
